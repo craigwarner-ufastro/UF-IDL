@@ -1,0 +1,42 @@
+General purpose IDL procedures and functions,
+	by Frank Varosi, NASA/GSFC,	
+	varosi@gsfc.nasa.gov
+
+
+~/idl/vlib/--+-- color/     Create, Load, Manipulate, Save color tables.
+             |			(some are extensons of IDL standard library)
+             |
+             |-- data/      Reading and processing data sets.
+             |
+             |-- graphics/  Rubber-box graphics, marks of various shapes, 
+             |			hardcopy, color scale with cursor interaction.
+             |
+             |-- image/     Image array storage, manipulation, and processing.
+             |			(storage of images in pooled array, statistics,
+             |		         cross-correlation, profiles, patching,...)
+             |
+             |-- io/        Locating files, some input/output of files.
+             |			(these are independent of operating system)
+             |
+             |-- math/      optimization, integration, interpolation, 
+             |			approximation, vectorized math, etc....
+             |			(minf_conj_grad and related routines for
+             |			 finding minimum of N-dimensional function,
+             |			 Trp3d is 3D array transpose,...)
+             |
+             |-- misc/      for strings, conversion, sorting, queries...
+             |			(get_words is quite general)
+             |
+             |-- struct/    for structures: copying, comparing, checking...
+             |			(with many recursive options)
+             |
+             +-- widgets/   Compound draw-widget, misc widget utilities,...
+             |
+             +-- window/    Create/Manipulate/Zoom/Print/Delete windows...
+             |
+             +-- xdoc/      doc = Widget for browsing thru all routines in path,
+             |			code obtained from Dominic Zarro, Solar physics.
+             |
+             +-- 386i/	Code for Sun386i only, frozen at idl version 2.0.4
+
+

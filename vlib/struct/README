@@ -1,0 +1,80 @@
+IDL routines for working with Structures,
+	Frank Varosi,   Oct.1990,
+
+
+  COPY_STRUCT,  struct_FROM,  struct_TO,  NF_copied,  EXCEPT=["except_Tags"]  ,$
+						 /RECUR_FROM	 ,$
+						 /RECUR_TO	 ,$
+						 /RECUR_TANDEM
+
+ 	Copies all Fields with matching Tag names (except for "except_Tags")
+		from one structure array to a different structure array.
+	Keyword options /RECUR_xxxx will cause recursive calls,
+		in order to copy from/to nested sub-structures.
+	NF_copied is incremented by # fields actually copied.
+
+  COPY_STRUCT_INX,  struct_FROM,  struct_TO,  INDEX_FROM= , INDEX_TO=
+
+	Same as COPY_STRUCT with Keywords INDEX_FROM and INDEX_TO by
+	which caller can specify the subscripts of which elements to copy,
+	thereby not requiring the memory to make copies of the elements.
+
+  ns = N_STRUCT( structure,  Ntags )
+
+	Return number of elements in array, if structured, and number of tags.
+	Returns zero if not structured, also works on file assoc. structs.
+
+  PRINT_STRUCT,  structure,  ["tags_print"],  LUN_OUT=Lun
+	Print specified tags (default is all tags that are not arrays)
+	from structure (to LUN if given) in a nice column format.
+
+  diff_List = COMPARE_STRUCT( struct_A,  struct_B,   EXCEPT=["except_Tags"]   ,$
+					             /RECUR_A, /RECUR_B   )
+
+ 	Compares all matching Tag names (except for "except_Tags")
+		between two structure arrays (may be different struct.defs.).
+	Returned Diff_List is a structure containing field names and # diffs.
+
+  nbytes = SIZE_STRUCT( structure,  /PRINT )
+
+	Obtain the size in bytes of an IDL structure definition.
+	/PRINT = to print all sub-structure sizes.
+
+  wsubs = WHERE_TAG( Struct,  Nfound,  TAG_NAME="Tag_Name",  $
+					ISELECT=ipart,  /NOPRINT,  $
+					RANGE=[min,max],  VALUES=[values] )
+
+	Obtain subscripts of elements in structure array for which
+	specified Tag has values in a RANGE or matching specified VALUES.
+	Useful in programming when Tag_Name is a variable.
+
+
+
+IDL routines for working with structured files:
+	Frank Varosi,   Oct.1990,
+
+
+
+  name = DDL_STRUCT( DDL_NAME = "Data_Set_Name",  /ABBREV, /TRUNC, VARIANT=# )
+
+        Convert a VMS DDL (Data Def. Lang.) record-structure definition file
+	into IDL structure(s) code packaged as a function.
+	Structure function can then be associated with data files.
+
+
+
+  DDL_TO_STRUCT, "Data_Set_Name"	;gets DDL file and invokes DDL_struct.
+
+
+
+  ALIGN_STRUCT,  "Struct_Name"
+
+	Check an IDL structure for maximal standard memory alignment of fields,
+	insert any byte padding required to align fields on size boundaries,
+	write out new code to define the aligned version of structure.
+	(Note: Struct_Name is name as given by HELP,/STRUCT,variable)
+	File record structure will be invariant of machine architecture.
+
+  Example:	WRITE_VAX_UNIX.PRO
+	in:
+		STARS::CHAMP$USER4:[VAROSI.IDL.FIRAS]
